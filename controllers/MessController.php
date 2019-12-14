@@ -73,6 +73,10 @@ class MessController extends Controller
      *
      * @return string
      */
+    
+    /**/
+    
+
     public function actionIndex()
     {
         $currSession = Yii::$app->session; 

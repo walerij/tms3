@@ -15,10 +15,19 @@ function nowclock()
 
 $('a[href="/mess/index"]').click(function()
 {
-    
-    alert('test');
+  
+  setInterval(nowclock1, 1000);
 });
 
-$('a[href="/mess/index"]').unload(function(){ 
-  alert("Пока, пользователь!"); 
+$("#clock1").ready( function()
+{
+    
+     setInterval(nowclock1, 1000);
+    
 });
+
+function nowclock1()
+{
+     $("#clock1").html(Date()); 
+}
+
