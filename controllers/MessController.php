@@ -12,15 +12,12 @@ use app\models\ContactForm;
 use app\models\MessForm;
 use app\models\MessRecord;
 
+class MessController extends Controller {
 
-
-class MessController extends Controller
-{
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -45,18 +42,13 @@ class MessController extends Controller
     /**
      * {@inheritdoc}
      */
-    
-    
-    function getLogin()
-    {
-         
-          if (Yii::$app->user->isGuest)
-            return $this->redirect ('/site/login');
+    function getLogin() {
+
+        if (Yii::$app->user->isGuest)
+            return $this->redirect('/site/login');
     }
-    
-    
-    public function actions()
-    {
+
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -73,38 +65,43 @@ class MessController extends Controller
      *
      * @return string
      */
-    
     /**/
-    
 
-    public function actionIndex()
-    {
-        $currSession = Yii::$app->session; 
+
+    public function actionIndex() {
+        $currSession = Yii::$app->session;
         $this->getLogin();
-        
-        $model=new MessForm();
-        $messRec=MessRecord::find()
-                         ->where(['from_id'=>$currSession['__id']])
-                         ->orWhere(['to_id'=>$currSession['__id']])
-                         ->all();
-        if($model->load(Yii::$app->request->post()))
-        {
-          if($model->validate())
-          {
-              $record= new MessRecord();
-             
-              $record->from_id=$currSession['__id'];
-              $record->to_id=$model->to_id;
-              $record->datetime_mess=date('Y-m-d H:i:s');
-              $record->message=$model->mess;
-              $record->save();
-              return $this->redirect('/mess/index');
-          }
-            
+
+        $model = new MessForm();
+        $messRec = MessRecord::find()
+                ->where(['from_id' => $currSession['__id']])
+                ->orWhere(['to_id' => $currSession['__id']])
+                ->all();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $record = new MessRecord();
+
+                $record->from_id = $currSession['__id'];
+                $record->to_id = $model->to_id;
+                $record->datetime_mess = date('Y-m-d H:i:s');
+                $record->message = $model->mess;
+                $record->save();
+                return $this->redirect('/mess/index');
+            }
         }
-            
-        return $this->render('index',['messform'=>$model, 'messRecords'=>$messRec]);
+
+        return $this->render('index', ['messform' => $model, 'messRecords' => $messRec]);
     }
 
-    
+    public function actionUpdate() {
+        //$form_model = new TestForm();
+        if (\Yii::$app->request->isAjax) {
+            return 'Запрос принят!'.data;
+        }
+        if ($form_model->load(\Yii::$app->request->post())) {
+            var_dump($form_model);
+        }
+        //return $this->render('index', compact('form_model'));
+    }
+
 }
