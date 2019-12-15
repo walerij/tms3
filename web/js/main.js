@@ -1,58 +1,14 @@
-$("#tb").on('click', function()
-       {
-        
-                setInterval(nowclock, 1000);
-        
-       });
-
-
-function nowclock()
-  {
-       $("#clock").html(Date());
-  }
-
-
-
-$('#button2').click(function()
-{
-  
-    upd1();
-});
 
 $("#clock1").ready( function()
 {
     
-    setInterval(upd1, 1000);
+    setInterval(update, 1000);
     
 });
 
-function nowclock1()
-{
-     $("#clock1").html(Date()); 
-}
+
 
 function update()
-{
-    
-    //var data = $(this).serialize();
-    var data = "name=Andrew&nickname=Aramis";
-    //alert(data);
-        $.ajax({
-            url: '/mess/update',
-            type: 'POST',
-            data: data,
-            success: function(res){
-                alert(res);
-            },
-            error: function(){
-                alert('Error!');
-            }
-        });
-        return false;
-}
-
-
-function upd1()
 {
     $.ajax({
 	url: '/mess/update',         /* Куда пойдет запрос */

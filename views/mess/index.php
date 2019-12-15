@@ -47,9 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                <button type="submit" class="btn btn-primary">
                    Отправить
                 </button>
-                <button id="button2" type="button" class='btn btn-default'>
-                    Тест
-                </button>
+               
                 
         <?php ActiveForm::end(); ?>
 </div>
