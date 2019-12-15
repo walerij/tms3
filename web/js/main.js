@@ -22,7 +22,7 @@ $('#button2').click(function()
 $("#clock1").ready( function()
 {
     
-     setInterval(nowclock1, 1000);
+    setInterval(upd1, 1000);
     
 });
 
@@ -59,8 +59,9 @@ function upd1()
 	method: 'get',             /* Метод передачи (post или get) */
 	dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
 	data: {text: 'Текст'},     /* Параметры передаваемые в запросе. */
-	success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-		alert(data);            /* В переменной data содержится ответ от index.php. */
+	success: function(res){   /* функция которая будет выполнена после успешного запроса.  */
+		//alert(res);            /* В переменной data содержится ответ от index.php. */
+                $("#messView").html(' '+res);
 	},
          error: function(jqXHR, exception){
                 alert('Error!'+jqXHR.responseText);

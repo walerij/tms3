@@ -95,13 +95,37 @@ class MessController extends Controller {
 
     public function actionUpdate() {
         //$form_model = new TestForm();
+
+        $currSession = Yii::$app->session;
+        $this->getLogin();
+
         if (\Yii::$app->request->isAjax) {
-            return 'Запрос принят!'.data;
+            $style_mess='';
+            $messRec = MessRecord::find()
+                    ->where(['from_id' => $currSession['__id']])
+                    ->orWhere(['to_id' => $currSession['__id']])
+                    ->all();
+            $tmp = '';
+            foreach ($messRec as $mess) {
+                if ($mess->eqId() == true)
+                    $style_mess = 'myright';
+                else
+                    $style_mess = 'myleft';
+                
+                $tmp.='<div class="row" style="text-align:right">
+                    <div class="row '.$style_mess.' ?>">
+                        '. $mess->datetime_mess .' - '.$mess->getUser($mess->from_id) .' 
+                    </div>  
+                    <div class="row '.$style_mess.'" >'.$mess->message.'</div> 
+                    </div>';
+                
+            }
+            return $tmp;
         }
         if ($form_model->load(\Yii::$app->request->post())) {
             var_dump($form_model);
         }
-        //return $this->render('index', compact('form_model'));
+//return $this->render('index', compact('form_model'));
     }
 
 }

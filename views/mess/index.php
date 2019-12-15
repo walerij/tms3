@@ -9,7 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;
    
 <div id='clock1'>tst</div>
    
-<div class="row">
+<div class="row" id='messView'>
     <?php 
     $style_mess='';
     
