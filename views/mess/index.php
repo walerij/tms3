@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php }?>
 </div>
 <div class="row">
-  
+    <p><?=$this->render('message')?></p>
 </div>
 <div class="row">
          <?php $form = ActiveForm::begin(['id' => 'addmess-form']); ?> 

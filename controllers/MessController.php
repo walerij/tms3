@@ -100,7 +100,7 @@ class MessController extends Controller {
         $this->getLogin();
 
         if (\Yii::$app->request->isAjax) {
-            $style_mess='';
+            $style_mess = '';
             $messRec = MessRecord::find()
                     ->where(['from_id' => $currSession['__id']])
                     ->orWhere(['to_id' => $currSession['__id']])
@@ -111,14 +111,13 @@ class MessController extends Controller {
                     $style_mess = 'myright';
                 else
                     $style_mess = 'myleft';
-                
+
                 $tmp.='<div class="row" style="text-align:right">
-                    <div class="row '.$style_mess.' ?>">
-                        '. $mess->datetime_mess .' - '.$mess->getUser($mess->from_id) .' 
+                    <div class="row ' . $style_mess . ' ?>">
+                        ' . $mess->datetime_mess . ' - ' . $mess->getUser($mess->from_id) . ' 
                     </div>  
-                    <div class="row '.$style_mess.'" >'.$mess->message.'</div> 
+                    <div class="row ' . $style_mess . '" >' . $mess->message . '</div> 
                     </div>';
-                
             }
             return $tmp;
         }
@@ -126,6 +125,19 @@ class MessController extends Controller {
             var_dump($form_model);
         }
 //return $this->render('index', compact('form_model'));
+    }
+
+    public function actionM2() {
+        $mm = '';
+        
+        $mm.=$this->returnUpd();
+       
+        return $mm.' '.$mm;
+    }
+
+    function returnUpd() {
+        $m2 = $this->render('message');
+        return $m2;
     }
 
 }
