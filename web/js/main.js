@@ -1,5 +1,5 @@
 
-$("#clock1").ready( function()
+$("#messView").ready( function()
 {
     
     setInterval(update, 1000);

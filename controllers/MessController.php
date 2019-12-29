@@ -108,16 +108,9 @@ class MessController extends Controller {
             $tmp = '';
             foreach ($messRec as $mess) {
                 if ($mess->eqId() == true)
-                    $style_mess = 'myright';
+                    $tmp.= $this->renderPartial('messl', ['mess' => $mess]);
                 else
-                    $style_mess = 'myleft';
-
-                $tmp.='<div class="row" style="text-align:right">
-                    <div class="row ' . $style_mess . ' ?>">
-                        ' . $mess->datetime_mess . ' - ' . $mess->getUser($mess->from_id) . ' 
-                    </div>  
-                    <div class="row ' . $style_mess . '" >' . $mess->message . '</div> 
-                    </div>';
+                    $tmp.= $this->renderPartial('messr', ['mess' => $mess]);
             }
             return $tmp;
         }
@@ -129,10 +122,10 @@ class MessController extends Controller {
 
     public function actionM2() {
         $mm = '';
-        
+
         $mm.=$this->returnUpd();
-       
-        return $mm.' '.$mm;
+
+        return $mm . ' ' . $mm;
     }
 
     function returnUpd() {
