@@ -10,6 +10,9 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
+use yii\bootstrap\ActiveForm;
+
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -29,18 +32,48 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'tms-3',
+        'brandLabel' => 'terra-my-su',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
+    
+    ActiveForm::begin([
+               'action'=>['site/search'],
+               'method'=>'get',
+               'options'=>
+               [
+                   'class'=>'navbar-form navbar-left'
+               ]
+               
+           ]);
+           
+           echo '<div class="input-group input-group-sm">';
+         
+           echo Html::input($type='text',
+                       'search',
+                       '',
+                   [
+                       'placeholder'=>'Найти...',
+                       'class'=>'form-control',
+                       'size'=>'20'
+                   ]
+                   
+                   );
+            
+           
+           echo '</div>';
+           ActiveForm::end();
+           
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav navbar-right','id' => 'mytopmenu'],
         'items' => [
-            ['label' => 'Сообщения', 'url' => ['/mess/index'], 'visible'=>!Yii::$app->user->isGuest],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Тестовый', 'url' => ['/mess/m2']],
+            ['label' => 'Сообщения', 'url' => ['/mess/index'],  'visible'=>!Yii::$app->user->isGuest],
+            ['label' => 'Фото',      'url' => ['/photo/index'], 'visible'=>!Yii::$app->user->isGuest],
+            ['label' => 'Музыка',    'url' => ['/music/index'], 'visible'=>!Yii::$app->user->isGuest],
+            ['label' => 'Видео',     'url' => ['/video/index'], 'visible'=>!Yii::$app->user->isGuest],
+            
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
@@ -69,7 +102,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Валерон-корпорейтед <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

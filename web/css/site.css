@@ -116,3 +116,25 @@ a.desc:after {
 
 .myright {  text-align:right; color:blue}
 .myleft {  text-align: left; }
+
+#mytopmenu, .navbar-default, .navbar-nav > .open > a
+{
+    background: #f5eee0;
+}
+
+#mytopmenu a:hover, #mytopmenu button:hover
+{
+    background: maroon;
+    color: wheat;
+}
+
+.navbar-default .navbar-nav > .active > a {
+    
+    background-color: #d79572;
+    color: wheat;
+}
+
+#mytopmenu a, #mytopmenu button
+{
+    color: #82462a;
+}
