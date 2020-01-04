@@ -8,6 +8,13 @@ $("#messView").ready( function()
 
 
 
+$("[/mess/index]").onbeforeunload(function() {
+  //return "Handler for .unload() called.";
+  alert("Пока");
+});
+
+
+
 function update()
 {
     $.ajax({
